@@ -19,13 +19,11 @@ contract SaveEtherErc20{
 
     event TokenDeposited(
         address indexed user,
-        address indexed token,
         uint256 amount
     );
 
     event TokenWithdrawn(
         address indexed user,
-        address indexed token,
         uint256 amount
     );
 
@@ -68,6 +66,8 @@ contract SaveEtherErc20{
         ERC20(tokenAddress).transferFrom(msg.sender, address(this), amount);
 
         tokenBalances[msg.sender] = tokenBalances[msg.sender] + amount;
+        emit TokenDeposited(msg.sender, amount);
+    
     }
 
     function getTokenBalance(address user) external view returns (uint256) {
@@ -82,6 +82,8 @@ contract SaveEtherErc20{
 
         bool success = ERC20(tokenAddress).transfer(msg.sender, amount);
         require(success, "Withdrawal Not Successful");
+        emit TokenWithdrawn(msg.sender, amount);
+        
     }
 }
 
