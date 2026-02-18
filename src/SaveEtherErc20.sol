@@ -55,9 +55,7 @@ contract SaveEtherErc20{
         emit EtherWithdrawn(msg.sender, amount);
     }
 
-    /*//////////////////////////////////////////////////////////////
-                            ERC20 FUNCTIONS
-    //////////////////////////////////////////////////////////////*/
+
 
   
     function depositToken(uint256 amount) external {
